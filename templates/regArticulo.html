@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block titulo %}Registrar Articulo{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
+{% endblock %}
+{% block active_art %}active{% endblock %}
+{% block active_art_reg %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Registrar Artículo</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="post">
+                    {% csrf_token %}
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Nombre de Artículo</label>
+                            <div class="col-lg-9">
+                                {{ formulario.nombre }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Pertenece</label>
+                            <div class="col-lg-3">
+                                {{ formulario.id_pertenece }}
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Cantidad</label>
+                            <div class="col-lg-1">
+                                {{ formulario.stock }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                            <div class="col-lg-5 bg-warning">
+                                Si ya hay en stock, agregar a los existentes
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Tipo de Artículo</label>
+                            <div class="col-lg-3">
+                                {{ formulario.categoria }}
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Precio de Compra</label>
+                            <div class="col-lg-1">
+                                {{ formulario.precio_compra }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Precio de Venta</label>
+                            <div class="col-lg-1">
+                                {{ formulario.precio_venta }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Fecha de Compra</label>
+                            <div class="col-lg-2">
+                                {{ formulario.fecha_compra }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                    </div><!-- fin panel body -->
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-default">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptplus %}
+    <script src="{{ STATIC_URL }}js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ STATIC_URL }}js/parsley.min.js"></script>
+    <script>
+        $(function(){
+                $('.datepicker').datepicker();
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block titulo %}Listar Clientes{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
+{% endblock %}
+{% block active_cli %}active{% endblock %}
+{% block active_cli_lis %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Listar Clientes</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="panel panel-default table-responsive">
+        <div class="panel-heading">
+            Lista de Clientes
+            <span class="label label-info pull-right">{{ cantidad }} clientes</span>
+        </div>
+        <div class="padding-md clearfix">
+            <table class="table table-striped" id="dataTable_datos">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>DNI</th>
+                    <th>Telefono</th>
+                    <th>Celular</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.id_cliente }}</td>
+                        <td>{{ cliente.nombre }}</td>
+                        <td>{{ cliente.ap_paterno }}</td>
+                        <td>{{ cliente.ap_materno }}</td>
+                        <td>{{ cliente.dni }}</td>
+                        <td>{{ cliente.telefono }}</td>
+                        <td>{{ cliente.celular }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div><!-- /.padding-md -->
+    </div><!-- /panel -->
+</div>
+{% endblock %}
+
+{% block scriptplus %}
+    <script src='{{ STATIC_URL }}js/jquery.dataTables.js'></script>
+    <script src='{{ STATIC_URL }}js/dataTables.bootstrap.js'></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable_datos').dataTable({
+                language: { url: "{{ STATIC_URL }}json/Spanish.json" }
+            });
+        });
+    </script>
+{% endblock %}
+

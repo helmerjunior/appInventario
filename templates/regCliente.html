@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block titulo %}Registrar Cliente{% endblock %}
+{% block active_cli %}active{% endblock %}
+{% block active_cli_reg %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Registrar Cliente</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="POST">
+                {% csrf_token %}
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Nombre de Cliente</label>
+                            <div class="col-lg-8">
+                                {{ formulario_cliente.nombre }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Apellido Paterno</label>
+                            <div class="col-lg-8">
+                                {{ formulario_cliente.ap_paterno }}
+                                <div class="seperator"></div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Apellido Materno</label>
+                            <div class="col-lg-8">
+                                {{ formulario_cliente.ap_materno }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">DNI</label>
+                            <div class="col-lg-3">
+                                {{ formulario_cliente.dni }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Telefono</label>
+                            <div class="col-lg-3">
+                                {{ formulario_cliente.telefono }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Celular</label>
+                            <div class="col-lg-3">
+                                {{ formulario_cliente.celular }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-default">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptplus %}
+    <script src="{{ STATIC_URL }}js/parsley.min.js"></script>
+{% endblock %}

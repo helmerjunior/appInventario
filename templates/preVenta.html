@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Vender Artículo</li>
+    </ul>
+</div><!-- breadcrumb -->
+<div class="padding-md">
+	<div class="row">
+    	<div class="col-md-12">
+            <div class="panel panel-default">
+            	<div class="panel-heading">
+            		<strong>Venta de {{ articulo.nombre }}</strong>
+            	</div>
+            	<div class="panel-body">
+	            	<form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="post">
+	            	{% csrf_token %}
+            		<div class="form-group">
+            			<label class="control-label col-lg-3">Cantidad a llevar</label>
+                        <div class="col-lg-9">
+							{{ formulario.cantidad }}
+            			</div>
+            		</div>
+					</form>
+            	</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contenido %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gato Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Font Awesome -->
+	<link href="{{ STATIC_URL }}css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- Perfect -->
+	<link href="{{ STATIC_URL }}css/app.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+	<div class="login-wrapper">
+		<div class="text-center">
+			<h2 class="fadeInUp animation-delay8" style="font-weight:bold">
+				<span class="text-success">Gato</span> <span style="color:#ccc; text-shadow:0 1px #fff">Admin</span>
+			</h2>
+		</div>
+		<div class="login-widget animation-delay1">	
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<div class="pull-left">
+						<i class="fa fa-lock fa-lg"></i> Login
+					</div>
+				</div>
+				<div class="panel-body">
+					<form class="form-login" method="POST" action=".">
+                    {% csrf_token %}
+						<div class="form-group">
+							<label>Usuario</label>
+							<!--<input type="text" placeholder="Usuario" class="form-control input-sm bounceIn animation-delay2" >-->
+                            {{ formulario.username }}
+						</div>
+						<div class="form-group">
+							<label>Contraseña</label>
+							<!--<input type="password" placeholder="Contraseña" class="form-control input-sm bounceIn animation-delay4">-->
+                            {{ formulario.password }}
+						</div>
+						<div class="form-group">
+							{% if formulario.errors %}
+                                <p>El nombre de usuario o contraseña son incorrectas</p>
+                            {% endif %}
+						</div>
+
+						<hr/>
+							
+						<button class="btn btn-success btn-sm bounceIn animation-delay5 pull-right" type="submit"><i class="fa fa-sign-in"></i> Entrar</button>
+					</form>
+				</div>
+			</div><!-- /panel -->
+		</div><!-- /login-widget -->
+	</div><!-- /login-wrapper -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <!-- Jquery -->
+	<script src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+    
+    <!-- Bootstrap -->
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+   
+	<!-- Modernizr -->
+	<script src='{{ STATIC_URL }}js/modernizr.min.js'></script>
+   
+    <!-- Pace -->
+	<script src='{{ STATIC_URL }}js/pace.min.js'></script>
+   
+	<!-- Popup Overlay -->
+	<script src='{{ STATIC_URL }}js/jquery.popupoverlay.min.js'></script>
+   
+    <!-- Slimscroll -->
+	<script src='{{ STATIC_URL }}js/jquery.slimscroll.min.js'></script>
+   
+	<!-- Cookie -->
+	<script src='{{ STATIC_URL }}js/jquery.cookie.min.js'></script>
+
+	<!-- Perfect -->
+	<script src="{{ STATIC_URL }}js/app/app.js"></script>
+  </body>
+</html>

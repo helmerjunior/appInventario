@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block titulo %}Listar Articulo{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
+{% endblock %}
+{% block active_art %}active{% endblock %}
+{% block active_art_list %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Listar Artículos</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="panel panel-default table-responsive">
+        <div class="panel-heading">
+            Lista de Articulos
+            {% if cantidad %}
+                <span class="label label-info pull-right">{{ cantidad }} articulos</span>
+            {% endif %}
+        </div>
+        <div class="padding-md clearfix">
+            <table class="table table-striped" id="dataTable_datos">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Categoria</th>
+                    <th>Precio Compra</th>
+                    <th>Precio Venta</th>
+                    <th>Fecha Compra</th>
+                    <th>Pertenece A:</th>
+                    {% if viene_de_ventas %}
+                        <th>Vender</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for articulo in datos %}
+                    <tr>
+                        <td>{{ articulo.id_articulo}}</td>
+                        <td>{{ articulo.nombre }}</td>
+                        <td>{{ articulo.stock }}</td>
+                        <td>{{ articulo.get_categoria_display }}</td>
+                        <td>{{ articulo.precio_compra }}</td>
+                        <td>{{ articulo.precio_venta }}</td>
+                        <td>{{ articulo.fecha_compra }}</td>
+                        <td>{{ articulo.id_pertenece.username }}</td>
+                        {% if viene_de_ventas %}
+                            <th>
+                                <!--
+                                <form action=>
+                                    <button type="submit" class="btn btn-info" >Vender</button>
+                                </form>
+                                -->
+                                <span class="label label-success"><a href="{% url 'venta_por_id' articulo.id_articulo %}">Vender</a></span>
+                            </th>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div><!-- /.padding-md -->
+    </div><!-- /panel -->
+</div>
+{% endblock %}
+
+{% block scriptplus %}
+    <script src='{{ STATIC_URL }}js/jquery.dataTables.js'></script>
+    <script src='{{ STATIC_URL }}js/dataTables.bootstrap.js'></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable_datos').dataTable({
+                language: { url: "{{ STATIC_URL }}json/Spanish.json" }
+            });
+        });
+    </script>
+{% endblock %}
+

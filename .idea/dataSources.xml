@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="486758488">
+    <data-source source="LOCAL" name="Django default" uuid="42f5965f-c0a2-4cac-a6ac-8d27e5172d23">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Proyectos_DJANGO\sisInventario\db.inventario</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

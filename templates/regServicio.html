@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block titulo %}Registrar Servicio{% endblock %}
+{% block active_ser %}active{% endblock %}
+{% block active_ser_reg %}active{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
+{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Registrar Servicio</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="POST">
+                {% csrf_token %}
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Servicio</label>
+                            <div class="col-lg-8">
+                                {{ formulario_servicio.nombre }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Precio</label>
+                            <div class="col-lg-2">
+                                {{ formulario_servicio.precio }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Fecha del Servicio</label>
+                            <div class="col-lg-2">
+                                {{ formulario_servicio.fecha_servicio }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-default">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptplus %}
+     <script src="{{ STATIC_URL }}js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ STATIC_URL }}js/parsley.min.js"></script>
+    <script>
+        $(function(){
+                $('.datepicker').datepicker();
+        })
+    </script>
+{% endblock %}

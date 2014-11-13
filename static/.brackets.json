@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Proyectos_DJANGO/sisInventario/static/js/wysihtml5-0.3.0.min.js",
+        "C:/Proyectos_DJANGO/sisInventario/static/js/waypoints.min.js"
+    ]
+}

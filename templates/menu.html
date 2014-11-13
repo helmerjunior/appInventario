@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block titulo %}Menu de Administracion{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/morris.css" rel="stylesheet"/>
+    <link href="{{ STATIC_URL }}css/colorbox/colorbox.css" rel="stylesheet"/>
+{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Principal</li>
+    </ul>
+</div><!-- breadcrumb -->
+<div class="main-header clearfix">
+    <div class="page-title">
+        <h3>Panel de Reportes</h3>
+        <span>Bienvenida de vuelta
+            {% if usuario.is_authenticated %}
+                {{ usuario.username|upper }}
+            {% else %}
+                GATO_USUARIO
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="panel-stat3 bg-info">
+                <h2 class="m-top-none">{{ cantidad_clientes }}</h2>
+                <h5>Clientes Registrados</h5>
+                <div class="stat-icon">
+                    <i class="fa fa-user fa-3x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="panel-stat3 bg-success">
+                <h2 class="m-top-none">333</h2>
+                <h5>Ventas en {% now "F" %}</h5>
+                <div class="stat-icon">
+                    <i class="fa fa-shopping-cart fa-3x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="panel-stat3 bg-warning">
+                <h2 class="m-top-none">{{ cantidad_articulos }}</h2>
+                <h5>Artículos en venta</h5>
+                <div class="stat-icon">
+                    <i class="fa fa-rocket fa-3x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="panel-stat3 bg-danger">
+                <h2 class="m-top-none">{{ cantidad_eventos }}</h2>
+                <h5>Evento(s) Pendiente(s)</h5>
+                <div class="stat-icon">
+                    <i class="fa fa-calendar fa-3x"></i>
+                </div>
+            </div>
+        </div>
+    </div><!-- fin de 1er row -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <span class="pull-left"><i class="fa fa-bar-chart-o fa-lg"></i> Ventas en el último año</span>
+
+                </div>
+                <div class="panel-body" id="trafficWidget">
+                    <div id="placeholder" class="graph" style="height:250px"></div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row row-merge">
+                        <div class="col-xs-6 text-center border-right">
+                            <h4 class="no-margin">1232</h4>
+                            <small class="text-muted">Visitors</small>
+                        </div>
+                        <div class="col-xs-6 text-center">
+                            <h4 class="no-margin">5421</h4>
+                            <small class="text-muted">Orders</small>
+                        </div>
+
+                    </div><!-- ./row -->
+                </div>
+            </div>
+
+            <div class="panel bg-info fadeInDown animation-delay3">
+                <div class="panel-body">
+                    <div id="lineChart" style="height: 150px;"></div>
+                    <div class="pull-right text-right">
+                        <strong class="font-14">Ganancia del día $3333</strong><br/>
+                        <span><i class="fa fa-shopping-cart"></i> Ganancia Semanal $3333</span>
+                        <div class="seperator"></div>
+                    </div>
+                </div>
+            </div><!-- /panel -->
+
+        </div><!-- Fin de la columna de 8-->
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix"><i class="fa fa-check-circle"></i> Estado del Inventario</div>
+                <div class="panel-body">
+                    <div id="donutChart" style="height: 185px;"></div>
+
+                </div>
+            </div><!-- /panel -->
+            <div class="panel bg-danger">
+                <div class="panel-body">
+                    <h4>Días para el último evento</h4>
+                    <div class="progress progress-striped active" style="height:8px; margin:5px 0 0 0;">
+                        <div class="progress-bar progress-bar-danger" style="width: 65%">
+                            <span class="sr-only">65% Complete</span>
+                        </div>
+                    </div>
+                    <strong class="pull-left m-top-xs">65% Complete</strong>
+                    <strong class="pull-right m-top-xs">1hr left</strong>
+                </div>
+            </div><!-- /panel -->
+
+            <div class="panel panel-overview">
+                <div class="overview-icon bg-primary">
+                    <i class="fa fa-coffee"></i>
+                </div>
+                <div class="overview-value">
+                    <h2>La Cueva del Gato</h2>
+                </div>
+            </div>
+
+
+        </div><!-- columna de 4 -->
+    </div>
+</div>
+{% endblock %}
+{% block perfectscript %}
+    <script src="{{ STATIC_URL }}js/app/app_dashboard.js"></script>
+{% endblock %}
+
+
+
+
+
+
+

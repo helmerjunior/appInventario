@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block titulo %}Registrar Cliente{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap-timepicker.css" rel="stylesheet">
+    {{ form.media }}
+{% endblock %}
+{% block active_eve %}active{% endblock %}
+{% block active_eve_reg %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Registrar Evento</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="POST">
+                {% csrf_token %}
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Nombre de Evento</label>
+                            <div class="col-lg-8">
+                                {{ formulario_evento.title }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Dia y Hora de Inicio</label>
+                            <div class="col-lg-2">
+                                {{ formulario_evento.start }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Dia y Hora de Fin</label>
+                            <div class="col-lg-2 bootstrap-timepicker">
+                                {{ formulario_evento.end }}
+                                <div class="seperator"></div>
+                            </div>
+                        </div>
+
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-default">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptplus %}
+    <script src="{{ STATIC_URL }}js/parsley.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap-timepicker.min.js"></script>
+    <script>
+        $(function(){
+                $('.datepicker1').datepicker();
+                $('.datepicker2').datepicker();
+                $('.timepicker1').timepicker();
+                $('.timepicker2').timepicker();
+        })
+    </script>
+{% endblock %}

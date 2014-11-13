@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block titulo %}Registrar Articulo{% endblock %}
+{% block cssplus %}
+    <link href="{{ STATIC_URL }}css/datepicker.css" rel="stylesheet">
+{% endblock %}
+{% block active_ven %}active{% endblock %}
+{% block active_ven_reg %}active{% endblock %}
+{% block contenido %}
+<div id="breadcrumb">
+    <ul class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="/menu"> Inicio</a></li>
+        <li class="active">Registrar Venta</li>
+    </ul>
+</div><!-- breadcrumb -->
+
+<div class="padding-md">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <form class="form-horizontal form-border no-margin" id="basic-constraint" data-validate="parsley" method="post">
+                    {% csrf_token %}
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Nombre de Artículo</label>
+                            <div class="col-lg-9">
+                                {{ formulario.fk_articulo }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Cliente</label>
+                            <div class="col-lg-9">
+                                {{ formulario.fk_cliente }}
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Pertenece</label>
+                            <div class="col-lg-7">
+                                {{ formulario.fk_duenioventa }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                            <div class="col-lg-5 bg-warning">
+                                Restar del stock
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Porcentaje de la venta</label>
+                            <div class="col-lg-5">
+                                {{ formulario.impuestoventa }}
+                            </div>
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Porcentaje para</label>
+                            <div class="col-lg-9">
+                                {{ formulario.fk_duenioimpuesto }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Cantidad</label>
+                            <div class="col-lg-5">
+                                {{ formulario.cantidad }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                            {% if formulario.cantidad.errors %}
+                                <div class="col-lg-5 bg-warning">
+                                    <ol>
+                                    {% for error in formulario.cantidad.errors %}
+                                        <li><strong>{{ error|escape }}</strong></li>
+                                    {% endfor %}
+                                    </ol>
+                                </div>
+                            {% endif %}
+                        </div><!-- formgroup -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">Fecha de Venta</label>
+                            <div class="col-lg-2">
+                                {{ formulario.pago_total }}
+                                {{ formulario.fecha }}
+                                <div class="seperator"></div>
+                            </div><!-- /.col -->
+                        </div><!-- formgroup -->
+                    </div><!-- fin panel body -->
+                    <div class="panel-footer">
+                        <button type="submit" class="btn btn-success">Registrar</button>
+                        <button type="reset" class="btn btn-default">Limpiar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scriptplus %}
+    <script src="{{ STATIC_URL }}js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ STATIC_URL }}js/parsley.min.js"></script>
+    <script>
+        $(function(){
+                $('.datepicker').datepicker();
+        })
+    </script>
+{% endblock %}
